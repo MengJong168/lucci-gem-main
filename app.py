@@ -26,7 +26,7 @@ def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         password = request.args.get('pass')
-        if password != "1516Coolb":
+        if password != "Huon5451":
             return "Unauthorized", 401
         return f(*args, **kwargs)
     return decorated_function
@@ -601,7 +601,7 @@ def send_to_telegram(transaction):
     # Determine processing channel and format
     if game_type == 'ff':  # Free Fire
        process_chat_id = '-1003220193778'
-       process_text = f"ff {transaction['player_id']} {package_id}"
+       process_text = f"{transaction['player_id']} {package_id}"
     elif game_type == 'bloodstrike':
        process_chat_id = '-1003349476343'  # Update with your actual channel ID
        process_text = f"bloodstrike {transaction['player_id']} 0000 {package_id}"
@@ -619,7 +619,7 @@ def send_to_telegram(transaction):
        process_chat_id = '-1003284732983'  # Update with your actual channel ID
     else:  # Mobile Legends (default)
        process_chat_id = '-1003407523251'
-       process_text = f"mlbb {transaction['player_id']} {transaction['zone_id']} {package_id}"
+       process_text = f"{transaction['player_id']} {transaction['zone_id']} {package_id}"
     
     # Create invoice message               
     invoice_text = (
