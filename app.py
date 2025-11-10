@@ -198,7 +198,7 @@ def generate_qr():
         
         # Create QR data
         qr_data = khqr.create_qr(
-            bank_account='meng_topup@aclb',
+            bank_account='lihoun_moung@aclb',
             merchant_name='LUCCI STORE',
             merchant_city='Phnom Penh',
             amount=amount,
