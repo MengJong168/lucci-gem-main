@@ -34,7 +34,7 @@ def admin_required(f):
 # Load transactions from data store API
 def load_transactions():
     try:
-        response = requests.get(f'{DATA_STORE_URL}/transactions?store=mengtopup', timeout=5)
+        response = requests.get(f'{DATA_STORE_URL}/transactions?store=luccist4re', timeout=5)
         response.raise_for_status()
         return response.json()
     except requests.RequestException:
@@ -43,7 +43,7 @@ def load_transactions():
 # Save transactions to data store API
 def save_transactions(transactions):
     try:
-        response = requests.post(f'{DATA_STORE_URL}/transactions?store=mengtopup', 
+        response = requests.post(f'{DATA_STORE_URL}/transactions?store=luccist4re', 
                                json=transactions, timeout=5)
         response.raise_for_status()
         return response.json().get('success', False)
@@ -53,7 +53,7 @@ def save_transactions(transactions):
 # Add a single transaction to data store
 def add_transaction_to_store(transaction_data, status):
     try:
-        response = requests.post(f'{DATA_STORE_URL}/transactions?store=mengtopup/add', 
+        response = requests.post(f'{DATA_STORE_URL}/transactions?store=luccist4re/add', 
                                json={
                                    'status': status,
                                    'transaction': transaction_data
@@ -65,7 +65,7 @@ def add_transaction_to_store(transaction_data, status):
 # Load packages from data store API
 def load_packages():
     try:
-        response = requests.get(f'{DATA_STORE_URL}/packages?store=mengtopup', timeout=5)
+        response = requests.get(f'{DATA_STORE_URL}/packages?store=luccist4re', timeout=5)
         response.raise_for_status()
         return response.json()
     except requests.RequestException:
@@ -451,7 +451,7 @@ def update_package():
             return jsonify({'error': 'Price must be a number'}), 400
 
         # Update via API
-        response = requests.post(f'{DATA_STORE_URL}/packages/update?store=mengtopup', 
+        response = requests.post(f'{DATA_STORE_URL}/packages/update?store=luccist4re', 
                                json={
                                    'game_type': game_type,
                                    'package_name': package_name,
@@ -522,7 +522,7 @@ def update_special_offer():
             return jsonify({'error': 'Price must be a number'}), 400
 
         # Update via API
-        response = requests.post(f'{DATA_STORE_URL}/packages/update?store=mengtopup', 
+        response = requests.post(f'{DATA_STORE_URL}/packages/update?store=luccist4re', 
                                json={
                                    'game_type': game_type,
                                    'package_name': offer_name,
@@ -600,16 +600,16 @@ def send_to_telegram(transaction):
     
     # Determine processing channel and format
     if game_type == 'ff':  # Free Fire
-       process_chat_id = '-1003284732983'
+       process_chat_id = '-1003220193778'
        process_text = f"ff {transaction['player_id']} {package_id}"
     elif game_type == 'bloodstrike':
-       process_chat_id = '-1003284732983'  # Update with your actual channel ID
+       process_chat_id = '-1003349476343'  # Update with your actual channel ID
        process_text = f"bloodstrike {transaction['player_id']} 0000 {package_id}"
     elif game_type == 'pubg':  # PUBG Mobile
-       process_chat_id = '-1003284732983' 
+       process_chat_id = '-1003349476343' 
        process_text = f"pubg {transaction['player_id']} 0000 {package_id}"
     elif game_type == 'hok':  # HONOR OF KING
-       process_chat_id = '-1003284732983'  # Update with your actual channel ID
+       process_chat_id = '-1003349476343'  # Update with your actual channel ID
        process_text = f"hok {transaction['player_id']} 0000 {package_id}"
     elif game_type == 'mcgg':  # Magic Chess: Go Go
        process_chat_id = '-1003284732983'  # Update with your actual channel ID
@@ -618,7 +618,7 @@ def send_to_telegram(transaction):
        process_text = f"mlbbph {transaction['player_id']} {transaction['zone_id']} {package_id}"
        process_chat_id = '-1003284732983'  # Update with your actual channel ID
     else:  # Mobile Legends (default)
-       process_chat_id = '-1003284732983'
+       process_chat_id = '-1003407523251'
        process_text = f"mlbb {transaction['player_id']} {transaction['zone_id']} {package_id}"
     
     # Create invoice message               
@@ -647,7 +647,7 @@ def send_to_telegram(transaction):
         requests.post(
             'https://api.telegram.org/bot8441360171:AAF9SBXX7GJq9Th7cJLjT0YW-bRKq9SIRJs/sendMessage',
             json={
-                'chat_id': '-1003161309637',
+                'chat_id': '-1003471760538',
                 'text': invoice_text,
                 'parse_mode': 'Markdown'
             },
@@ -662,4 +662,3 @@ def send_to_telegram(transaction):
 
 if __name__ == '__main__':
     app.run()
-
