@@ -46,23 +46,36 @@
     </div>
   </div>
 </div>
+
 <section id="specialOffers"> 
   <h3 class="section-title special-offer-Khmer-heading">ផ្ទៀងកូដរង្វាន់</h3>
+  
   <div class="special-offers-wrapper">
-    <div class="offer-image-container">
-      <a href="/free-fire">
-        <img src="/static/images/offer-ff.jpg" alt="Special Offer 1">
-      </a>
-    </div>
-    <div class="offer-image-container">
-      <a href="/free-fire">
-        <img src="/static/images/offer-ff.jpg" alt="Special Offer 2">
-      </a>
+    <div class="slider-track">
+      <div class="offer-image-container">
+        <a href="/mobile-legends">
+          <img src="/static/images/IMG_3854.JPG" alt="Special Offer 1">
+        </a>
+      </div>
+      <div class="offer-image-container">
+        <a href="/mobile-legends">
+          <img src="/static/images/IMG_3855.JPG" alt="Special Offer 2">
+        </a>
+      </div>
+      <div class="offer-image-container">
+        <a href="/mobile-legends">
+          <img src="/static/images/IMG_3850.JPG" alt="Special Offer 3">
+        </a>
+      </div>
+      <div class="offer-image-container">
+        <a href="/free-fire">
+          <img src="/static/images/IMG_3850.JPG" alt="Special Offer 4">
+        </a>
+      </div>
     </div>
   </div>
 </section>
-
-    <!-- Homepage Section -->
+        <!-- Homepage Section -->
     <section id="homepage" class="homepage-section">
       <h2 class="home-title-khmer-heading">
        ហ្គេមល្បីៗនឹងពេញនិយម
@@ -96,34 +109,36 @@
         </div>
         <!-- In the game-grid section, replace the existing PUBG Mobile card with this: -->
 
-<!-- <div class="game-card" onclick="showPUBGTopup()"> -->
+<div class="game-card" onclick="showPUBGTopup()">
   <!-- <div class="game-card"> -->
-  <!-- <div class="game-image-container">
+  <div class="game-image-container">
     <img src="/static/images/pubg_mobile.jpg" alt="PUBG Mobile" class="game-image"/>
   </div>
-  <div class="game-title game-title-english-heading">PUBG</div> -->
+  <div class="game-title game-title-english-heading">PUBG</div>
   <!-- <button class="english-heading">Out of stock</button> -->
-  <!-- <button class="topup-button">TOPUP</button>
-</div> -->
+  <button class="topup-button">TOPUP</button>
+</div>
 
-<!-- <div class="game-card" onclick="showHOKTopup()"> -->
+<div class="game-card" onclick="showHOKTopup()">
   <!-- <div class="game-card"> -->
-  <!-- <div class="game-image-container">
+  <div class="game-image-container">
     <img src="/static/images/h_o_k.jpg" alt="HONOR OF KING" class="game-image"/>
   </div>
-  <div class="game-title game-title-english-heading">HOK</div> -->
+  <div class="game-title game-title-english-heading">HOK</div>
   <!-- <button class="english-heading">Out of stock</button> -->
-  <!-- <button class="topup-button">TOPUP</button>
+  <button class="topup-button">TOPUP</button>
 </div>
-<div class="game-card" onclick="showBloodStrikeTopup()"> -->
+
+<div class="game-card" onclick="showBloodStrikeTopup()">
   <!-- <div class="game-card"> -->
-  <!-- <div class="game-image-container">
+  <div class="game-image-container">
     <img src="/static/images/blood_strike.jpg" alt="Blood Strike" class="game-image"/>
   </div>
-  <div class="game-title game-title-english-heading">B.Strike</div> -->
+  <div class="game-title game-title-english-heading">B.Strike</div>
   <!-- <button class="english-heading">Out of stock</button> -->
-  <!-- <button class="topup-button">TOPUP</button>
-</div> -->
+  <button class="topup-button">TOPUP</button>
+</div>
+
 <!-- Add this to your game-grid section -->
 <!-- <div class="game-card" onclick="showMCGGTopup()">
   <div class="game-card">
@@ -142,6 +157,7 @@
     <p class="khmer-heading">ទិញពេជ្រ Mobile Legends: Bang Bang ក្នុងតម្លៃសមរម្យ! តាមរយះអាយឌី ID របស់អ្នក, ជ្រើសរើសកញ្ចប់ពេជ្យ ដែលអ្នកពេញចិត្តទិញ, ដោយបង់ប្រាក់តាមមធ្យោបាយដែលអ្នកមាន, ពេជ្រនឹងបញ្ជូនទៅក្នុងគណនេយ្យ MLBB របស់អ្នកក្នុងរយះពេលពីចន្លោះ 10នាទី ដល់ 3ម៉ោង។</p>
   </div>
 </section>
+
 <!-- Lucky Popup or How To Topup -->
 <div id="luckyPopup" class="lucky-popup" style="display: none;">
   <div class="lucky-popup-content">
@@ -156,8 +172,7 @@
     <p class="khmer-heading">១. ខ្ញុំយល់ព្រមចំពោះការបញ្ជារទិញទាំងអស់ និងមិនមានការ​ លុបចោល ឬ​ សងប្រាក់វិញ ឡើយ</p>
     <p class="english-heading">1. I agree to all orders and there is no cancellation or refund</p><br>
     <p class="khmer-heading">ទាក់ទងពួក​យើង:</p>
-    <p class="khmer-heading">អាសយដ្ឋាន:​ ខណ្ឌកំបូល, រាជធានីភ្នំពេញ</p>
-    <p class="english-heading">Address: Khan Kamboul, Phnom Penh City, Cambodia</p>
+    <p class="english-heading">Address: Andong Snay, Andong Snay, Rolea B'ler, Kompong Chhnang</p>
     <button onclick="hideTerms()" class="english-heading" style="margin-top: 20px;">Back</button>
   </div>
 </section>
@@ -2121,14 +2136,25 @@ async function downloadInvoicePDF() {
   const invoiceNumber = `INVNO-S${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
 
   // Generate 6-digit code in format "10000XXXXXX" excluding 10000538377
-  function generateCode() {
-    let sixDigitCode;
-    do {
-      sixDigitCode = Math.floor(100000 + Math.random() * 900000); // Generates random 6-digit number
-    } while (`10000${sixDigitCode}` === "10000538377"); // Keep generating until it's not the disabled code
-    
-    return `10000${sixDigitCode}`;
-  }
+function generateCode() {
+  const disabledCodes = [
+    "10000204576",
+    "10000557875",
+    "10000619186",
+    "10000913462"
+  ];
+
+  let sixDigitCode;
+  let fullCode;
+
+  do {
+    sixDigitCode = Math.floor(100000 + Math.random() * 900000); // Generates random 6-digit number
+    fullCode = `10000${sixDigitCode}`;
+  } while (disabledCodes.includes(fullCode)); // Keep generating until it's not disabled
+
+  return fullCode;
+}
+
   
   const generatedCode = generateCode();
 
@@ -2673,6 +2699,51 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('homepage').classList.remove('page-transition');
         }, 300);
     }
+
+const track = document.querySelector('.slider-track');
+const slides = document.querySelectorAll('.offer-image-container');
+let index = 0;
+let startX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let dragging = false;
+
+function setPosition() {
+  track.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function touchStart(e) {
+  dragging = true;
+  startX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+}
+
+function touchMove(e) {
+  if (!dragging) return;
+  const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+  const diff = currentX - startX;
+  currentTranslate = prevTranslate + diff;
+  setPosition();
+}
+
+function touchEnd() {
+  dragging = false;
+  const moveBy = currentTranslate - prevTranslate;
+  const slideWidth = track.clientWidth / 2; // roughly 2 slides visible
+  if (moveBy < -50 && index < slides.length - 2) index++;
+  if (moveBy > 50 && index > 0) index--;
+  currentTranslate = -index * (track.clientWidth * 0.55); // 55% shift per set
+  prevTranslate = currentTranslate;
+  setPosition();
+}
+
+// Touch and Mouse Support
+track.addEventListener('touchstart', touchStart);
+track.addEventListener('touchmove', touchMove);
+track.addEventListener('touchend', touchEnd);
+track.addEventListener('mousedown', touchStart);
+track.addEventListener('mousemove', touchMove);
+track.addEventListener('mouseup', touchEnd);
+track.addEventListener('mouseleave', () => (dragging = false));
 
 </script>
 </body>
