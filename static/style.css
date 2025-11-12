@@ -173,14 +173,23 @@ main {
 
 .frame {
   background-color: #888888;
-  border: 2px solid var(--border-color);
+  border: 2px solid #FFFF00;
+  border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 5px;
+  box-shadow: 0 0 5px #ffeb3b; /* glowing yellow border */
+}
+
+.frame-agreement {
+  border: 2px solid var(#0f0f1a);
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 5px;
 }
 
-.frame-agreement {
-  border: 2px solid var(#0f0f1a);
+.frame-banner {
+  background-color: #888888;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   padding: 5px;
   margin-bottom: 5px;
@@ -213,12 +222,13 @@ input[type="number"] {
 
 .card {
   background-color: #bebebe;
-  border: #bebebe;
+  border: 2px solid #FFFF00;
   border-radius: 8px;
   padding: 2px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 0 5px #ffeb3b; /* glowing yellow border */
 }
 
 .card:hover {
@@ -226,8 +236,9 @@ input[type="number"] {
 }
 
 .card.selected {
-  border: 2px #bebebe;
+  border: 2px solid #FFFF00;
   background-color: #444444;
+  box-shadow: 0 0 5px #ffeb3b; /* glowing yellow border */
 }
 
 .card img {
@@ -983,6 +994,14 @@ button:hover {
   }
   /* Banner Container */
 .banner-container.frame {
+  border: 0px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.banner-container-frame.frame-banner {
   border: 0px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
