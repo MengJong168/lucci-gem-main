@@ -178,8 +178,16 @@ main {
   padding: 5px;
   margin-bottom: 5px;
   box-shadow: 0 0 5px #ffeb3b; /* glowing yellow border */
+  animation: glowPulse 1.5s infinite alternate;
 }
-
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 5px #ffeb3b;
+  }
+  to {
+    box-shadow: 0 0 20px #ffff66; /* brighter yellow at max glow */
+  }
+}
 .frame-agreement {
   border: 2px solid var(#0f0f1a);
   border-radius: 8px;
@@ -238,7 +246,15 @@ input[type="number"] {
 .card.selected {
   border: 2px solid #FFFF00;
   background-color: #444444;
-  box-shadow: 0 0 5px #ffeb3b; /* glowing yellow border */
+  animation: glowPulse 1.5s infinite alternate;
+}
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 5px #ffeb3b;
+  }
+  to {
+    box-shadow: 0 0 10px #ffff66; /* brighter yellow at max glow */
+  }
 }
 
 .card img {
