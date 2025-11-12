@@ -29,7 +29,7 @@
 </header>
   <main>  
 <!-- Main Banner Slider -->
-<div class="banner-container frame">
+<div class="banner-container-frame frame-banner">
   <div class="banner-slider">
     <div class="banner-slides">
       <div class="banner-slide active">
@@ -91,13 +91,13 @@
           <button class="topup-button">TOPUP</button>
         </div>
         <!-- In the game-grid section, add this card after the existing games -->
-<!-- <div class="game-card" onclick="showMLPHTopup()">
+<div class="game-card" onclick="showMLPHTopup()">
   <div class="game-image-container">
     <img src="/static/images/mobile_legendphmysg.jpg" alt="Mobile Legend PH" class="game-image"/>
   </div>
   <div class="game-title game-title-english-heading">MLBB PH </div>
   <button class="topup-button">TOPUP</button>
-</div> -->
+</div>
         <div class="game-card" onclick="showFFTopup()">
           <!-- <div class="game-card"> -->
           <div class="game-image-container">
@@ -657,7 +657,7 @@
 
 <section id="bloodstrikeTopupSection" style="display: none;">
     <div class="top-banner-image">
-    <img src="/static/images/01K0BWPP62H25DP58P9Z82CF77.jpg" 
+    <img src="/static/images/01K0BWPP62H25DP58P9Z82CF77bs.jpg" 
          alt="Mobile Legend Banner Top" 
          class="full-width-banner" />
   </div>
@@ -1120,7 +1120,7 @@ function createPackageCard(pkg, gameType) {
         default: // ml, ff
             displayName = (pkg.name.includes('Weekly') || 
                          pkg.name.includes('Monthly') || 
-                         pkg.name.includes('Evo') || 
+                         pkg.name.includes('EVO') || 
                          pkg.name.includes('lite') || 
                          pkg.name.includes('Pass'))
                        ? pkg.name
