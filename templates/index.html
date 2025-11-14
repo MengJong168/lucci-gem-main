@@ -1521,6 +1521,81 @@ async function checkMLPHUsername() {
     function closeInvoiceModal() {
       document.getElementById('invoiceModal').style.display = 'none';
     }
+
+// Save transaction ID when payment starts
+function saveTransactionId(transactionId) {
+    localStorage.setItem('lastTransaction', transactionId);
+}
+
+// Check for previous transaction on page load
+function checkPreviousTransaction() {
+    const lastTransaction = localStorage.getItem('lastTransaction');
+    if (lastTransaction) {
+        // Show a simple message
+        showRecoveryMessage(lastTransaction);
+    }
+}
+
+// Show recovery message
+function showRecoveryMessage(transactionId) {
+    const recoveryDiv = document.createElement('div');
+    recoveryDiv.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 300px;
+        ">
+            <h4 style="margin:0 0 10px 0;">Payment Recovery</h4>
+            <p style="margin:0 0 10px 0; font-size:14px;">Checking your previous payment...</p>
+            <button onclick="checkPaymentStatus('${transactionId}')" 
+                    style="background:white; color:#4CAF50; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">
+                Check Status
+            </button>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="background:transparent; color:white; border:1px solid white; padding:5px 10px; border-radius:4px; cursor:pointer; margin-left:5px;">
+                Close
+            </button>
+        </div>
+    `;
+    document.body.appendChild(recoveryDiv);
+}
+
+// Check payment status
+async function checkPaymentStatus(transactionId) {
+    try {
+        const response = await fetch(`/check_status/${transactionId}`);
+        const result = await response.json();
+        
+        if (result.status === 'completed') {
+            alert(`✅ Payment Successful! $${result.transaction.amount} was processed.`);
+            localStorage.removeItem('lastTransaction');
+            // Remove recovery message
+            document.querySelectorAll('div').forEach(div => {
+                if (div.innerHTML.includes('Payment Recovery')) {
+                    div.remove();
+                }
+            });
+        } else if (result.status === 'pending') {
+            alert('⏳ Payment still pending. Please wait...');
+        } else if (result.status === 'expired') {
+            alert('❌ Payment expired. Please try again.');
+            localStorage.removeItem('lastTransaction');
+        } else {
+            alert('❌ Transaction not found.');
+            localStorage.removeItem('lastTransaction');
+        }
+    } catch (error) {
+        alert('Error checking payment status. Please try again.');
+    }
+}
+
 let countdownInterval = null;
 function initiatePayment() {
     let id, zone, gameType;
@@ -1565,6 +1640,12 @@ function initiatePayment() {
         alert('No game section selected');
         return;
     }
+      // After generating QR, save transaction ID
+    if (currentTransaction && currentTransaction.id) {
+        saveTransactionId(currentTransaction.id);
+    }
+
+
 
     // Get the appropriate checkbox based on game type
     let khqrChecked;
@@ -2019,8 +2100,12 @@ function showInvoice(transaction) {
   } catch (error) {
     console.error('Error showing invoice:', error);
   }
+    localStorage.removeItem('lastTransaction');
 }
-
+// Check for previous transactions when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    checkPreviousTransaction();
+});
 function backToTopup() {
   try {
     closeInvoiceModal();
