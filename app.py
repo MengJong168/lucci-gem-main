@@ -10,7 +10,6 @@ import os
 from bakong_khqr import KHQR
 import json
 from functools import wraps
-import threading
 
 app = Flask(__name__)
 
@@ -571,9 +570,6 @@ def api_transactions():
             'error': str(e)
         }), 500
 
-from datetime import datetime, timedelta
-import time
-
 # Add this global variable near the top with other configurations
 DUPLICATE_CHECK_WINDOW = 10  # seconds
 recent_transactions = {}
@@ -711,55 +707,6 @@ def cleanup_recent_transactions():
         for key, timestamp in recent_transactions.items() 
         if timestamp > cutoff_time
     }
-
-def check_pending_payments_background():
-    """Check pending payments every 30 seconds"""
-    while True:
-        try:
-            transactions = load_transactions()
-            pending_txns = transactions.get('pending', [])
-            
-            for txn in pending_txns:
-                md5_hash = txn.get('md5_hash')
-                if md5_hash:
-                    try:
-                        response = requests.get(f"https://mengtopup.shop/api/check_payment?md5={md5_hash}", timeout=5)
-                        if response.status_code == 200:
-                            payment_data = response.json()
-                            if payment_data.get('status') == "PAID":
-                                # Move to completed
-                                completed_txn = {**txn, 'status': 'completed', 'telegram_sent': False}
-                                transactions['completed'].append(completed_txn)
-                                transactions['pending'].remove(txn)
-                                send_to_telegram(completed_txn)
-                                save_transactions(transactions)
-                    except:
-                        pass
-            
-            time.sleep(30)  # Check every 30 seconds
-        except:
-            time.sleep(60)  # Wait longer if error
-
-# Start background thread when app starts
-background_thread = threading.Thread(target=check_pending_payments_background, daemon=True)
-background_thread.start()
-
-# Simple status check endpoint
-@app.route('/check_status/<transaction_id>')
-def check_status(transaction_id):
-    """Simple endpoint to check transaction status"""
-    transactions = load_transactions()
-    
-    # Check all statuses
-    for status in ['completed', 'pending', 'expired']:
-        for txn in transactions.get(status, []):
-            if txn.get('transaction_id') == transaction_id:
-                return jsonify({
-                    'status': status,
-                    'transaction': txn
-                })
-    
-    return jsonify({'status': 'not_found'})
 
 if __name__ == '__main__':
     app.run()
